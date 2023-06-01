@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { signInAPI } from "../actions";
@@ -6,12 +6,10 @@ import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
   const navigate = useNavigate();
-  useEffect(() => {
-    props.user && navigate("/home");
-  }, [navigate, props.user]);
 
   return (
     <Container>
+    {props.user && navigate("/home")}
       <Nav>
         <a href="/">
           <img src="/images/login-logo.svg" alt="" />
@@ -178,7 +176,7 @@ const Google = styled.button`
 const mapStateToProps = (state) => {
   // console.log(state);
   return {
-    user: state.useState.state,
+    user: state.useState.user,
   };
 };
 
